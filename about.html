@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>About — ONLINE SYCN</title>
+    <meta name="description"
+        content="About ONLINE SYCN — notes for makers and students: engineering · Linux · space tech" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Mono&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060506;
+            --panel: #0b0b10;
+            --muted: #b7c0c9;
+            --red: #ff375f;
+            --blue: #2fb0ff;
+            --glass: rgba(255, 255, 255, 0.03);
+            --radius: 12px;
+            --maxw: 1100px;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            background:
+                radial-gradient(800px 300px at 85% 10%, rgba(47, 176, 255, 0.06), transparent 8%),
+                linear-gradient(180deg, var(--bg) 0%, #030204 60%);
+            color: var(--muted);
+            font-family: Inter, system-ui, Segoe UI, Roboto, Arial;
+        }
+
+        .container {
+            max-width: var(--maxw);
+            margin: 36px auto;
+            padding: 22px
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            justify-content: space-between
+        }
+
+        .brand {
+            display: flex;
+            gap: 14px;
+            align-items: center
+        }
+
+        .logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--red), var(--blue));
+            display: grid;
+            place-items: center;
+            font-family: Fira Mono, monospace;
+            color: #060506;
+            font-weight: 900;
+            box-shadow: 0 10px 30px rgba(3, 3, 8, 0.7);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #fff
+        }
+
+        .tagline {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.95rem
+        }
+
+        nav {
+            display: flex;
+            gap: 10px;
+            align-items: center
+        }
+
+        .btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--muted);
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn.primary {
+            background: linear-gradient(90deg, var(--red), var(--blue));
+            color: #060506;
+            border: none
+        }
+
+        main {
+            margin-top: 26px;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 22px
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+            padding: 20px;
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 8px 26px rgba(2, 6, 12, 0.45)
+        }
+
+        h2 {
+            color: #fff;
+            margin-top: 0
+        }
+
+        p {
+            color: var(--muted);
+            line-height: 1.6
+        }
+
+        .meta {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-top: 8px
+        }
+
+        .profile {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .avatar {
+            width: 96px;
+            height: 96px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--red), var(--blue));
+            display: grid;
+            place-items: center;
+            font-family: Fira Mono;
+            font-weight: 900;
+            color: #060506;
+            font-size: 22px;
+            box-shadow: 0 8px 22px rgba(3, 3, 8, 0.6);
+        }
+
+        .list {
+            margin: 12px 0;
+            padding: 0 12px
+        }
+
+        .list li {
+            margin: 8px 0;
+            color: var(--muted)
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 12px
+        }
+
+        .chip {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            color: var(--muted);
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-block
+        }
+
+        aside .card {
+            position: sticky;
+            top: 24px
+        }
+
+        footer {
+            margin-top: 28px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.9rem
+        }
+
+        @media (max-width:960px) {
+            main {
+                grid-template-columns: 1fr
+            }
+
+            .avatar {
+                width: 80px;
+                height: 80px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" role="document">
+        <header>
+            <div class="brand">
+                <div class="logo" aria-hidden="true">OS</div>
+                <div>
+                    <h1>ONLINE SYCN</h1>
+                    <p class="tagline">Engineering · Linux · Space tech</p>
+                </div>
+            </div>
+
+            <nav aria-label="Primary">
+                <a class="btn" href="index.html">Home</a>
+                <a class="btn primary" href="index.html#posts">Posts</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="card" aria-labelledby="aboutHeading">
+                <h2 id="aboutHeading">About Me</h2>
+
+                <div class="profile">
+                    <div class="avatar" aria-hidden="true">OS</div>
+                    <div>
+                        <p class="meta"><strong>Praveen Kumar R</strong> — I’m Praveen Kumar R, an EEE student at Agni
+                            College of Technology. I’m learning electronics and electrical systems while exploring
+                            aviation, operating-systems research, and web development. I built this site as a hobby and
+                            a simple knowledge-sharing platform for short teach-blogs and practical notes..</p>
+                        <p class="meta">Location: Chengalpattu, Tamil Nadu · Student at Agni College of Technology</p>
+                    </div>
+                </div>
+
+                <h3 style="color:#fff;margin-top:18px">Current Learning</h3>
+                <ul class="list" aria-hidden="false">
+                    <li>Electronics fundamentals and basic circuit experiments</li>
+                    <li>Electrical systems and lab workflows</li>
+                    <li>Aviation concepts and small-sat basics</li>
+                    <li>Web development with Nuxt and static site generators</li>
+                    <li>Operating systems research and fundamentals</li>
+                </ul>
+
+                <h3 style="color:#fff;margin-top:18px">How I use this site</h3>
+                <ul class="list">
+                    <li>Short teach-blogs and step-by-step notes that I write while learning</li>
+                    <li>Bench-ready snippets and quick references I can use later</li>
+                    <li>Simple tutorials to help others who are starting the same things</li>
+                </ul>
+
+                <h3 style="color:#fff;margin-top:18px">Contact</h3>
+                <p class="meta">Prefer short, clear messages. Mention the project and the expected outcome.</p>
+                <div class="links">
+                    <a class="chip" href="mailto:r.praveenkumar456@outlook.com" onclick="return false">Email</a>
+                    <a class="chip" href="https://github.com/rpraveenkumar637/" onclick="return false">GitHub</a>
+                    <a class="chip" href="https://www.linkedin.com/in/praveenkumar456/"
+                        onclick="return false">LinkedIn</a>
+                </div>
+            </section>
+
+            <aside>
+                <div class="card">
+                    <h3 style="margin-top:0;color:#fff">Quick facts</h3>
+                    <p class="meta">Nickname: Praveen · Interests: Electronics Prototyping, Embedded Systems, Power
+                        Systems & Batteries, Aviation Fundamentals, Operating Systems Research, Web Development,
+                        Technical Writing, Open‑Source Contribution, Data Logging & Visualization, DIY Hardware
+                        Projects, Learning & Teaching </p>
+                    </ul>
+                </div>
+
+                <div class="card" style="margin-top:16px">
+                    <h3 style="margin-top:0;color:#fff">Quick links</h3>
+                    <div style="margin-top:10px">
+                        <a class="chip" href="index.html">Back to home</a>
+                        <a class="chip" href="index.html#posts">Read posts</a>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <footer>
+            <div class="meta">&copy; ONLINE SYCN 2025</div>
+        </footer>
+    </div>
+</body>
+
+</html>
