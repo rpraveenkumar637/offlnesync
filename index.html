@@ -1,28 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>OFFLINE SYCN BLOGSPOT</title>
-  <meta name="description" content="Engineering, Linux, Space Tech and Policy Notes — static, privacy-first blog." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <title>ONLINE SYCN</title>
+  <meta name="description" content="ONLINE SYCN — notes for makers and students: engineering · Linux · space tech" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Mono&display=swap"
+    rel="stylesheet">
   <style>
     :root {
-      --bg-900: #050607;
+      --bg: #060506;
       /* deep black */
-      --panel: #0b0f14;
+      --panel: #0b0b10;
       /* near-black panel */
-      --muted: #9aa4ae;
-      /* neutral text */
-      --red: #ef4444;
+      --muted: #b7c0c9;
+      --red: #ff375f;
       /* vivid red */
-      --blue: #3b82f6;
-      /* vivid blue */
+      --blue: #2fb0ff;
+      /* electric blue */
       --glass: rgba(255, 255, 255, 0.03);
-      --glass-2: rgba(255, 255, 255, 0.02);
-      --maxw: 1200px;
-      color-scheme: dark;
+      --radius: 12px;
+      --maxw: 1100px;
     }
 
     * {
@@ -33,457 +32,325 @@
     body {
       height: 100%;
       margin: 0;
-      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial;
-      background: linear-gradient(180deg, var(--bg-900), #071026);
-      color: #e8eef6
+      background:
+        radial-gradient(800px 300px at 85% 10%, rgba(47, 176, 255, 0.06), transparent 8%),
+        linear-gradient(180deg, var(--bg) 0%, #030204 60%);
+      color: var(--muted);
+      font-family: Inter, system-ui, Segoe UI, Roboto, Arial;
     }
 
-    a {
-      color: inherit
+    .container {
+      max-width: var(--maxw);
+      margin: 36px auto;
+      padding: 22px
     }
 
     header {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.45), transparent);
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.03)
-    }
-
-    .nav {
-      max-width: var(--maxw);
-      margin: 0 auto;
       display: flex;
       align-items: center;
-      padding: 18px;
-      gap: 16px
+      gap: 18px;
+      justify-content: space-between
+    }
+
+    .brand {
+      display: flex;
+      gap: 14px;
+      align-items: center
     }
 
     .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px
-    }
-
-    .logo .mark {
-      width: 44px;
-      height: 44px;
-      border-radius: 8px;
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
       background: linear-gradient(135deg, var(--red), var(--blue));
-      box-shadow: 0 6px 22px rgba(59, 130, 246, 0.12), inset 0 -6px 18px rgba(0, 0, 0, 0.35);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      color: #07070a
+      display: grid;
+      place-items: center;
+      font-family: Fira Mono, monospace;
+      color: #060506;
+      font-weight: 900;
+      box-shadow: 0 12px 36px rgba(3, 3, 8, 0.7);
     }
 
-    .brand h1 {
+    h1 {
       margin: 0;
-      font-size: 1rem;
-      letter-spacing: 0.6px;
-      font-weight: 800
+      font-size: 1.2rem;
+      color: #fff
     }
 
-    .brand p {
+    .tagline {
       margin: 0;
       color: var(--muted);
-      font-size: 0.82rem
+      font-size: 0.95rem
     }
 
     nav {
-      margin-left: auto;
       display: flex;
       gap: 10px;
       align-items: center
     }
 
-    .nav a {
-      padding: 8px 12px;
-      border-radius: 10px;
-      font-weight: 700;
+    .btn {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.06);
       color: var(--muted);
-      text-decoration: none
-    }
-
-    .nav a:hover {
-      background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-      color: #fff
-    }
-
-    .cta {
-      background: linear-gradient(90deg, var(--red), var(--blue));
       padding: 8px 12px;
       border-radius: 10px;
-      color: #07070a;
-      font-weight: 800
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
     }
 
-    main {
-      max-width: var(--maxw);
-      margin: 28px auto;
-      padding: 0 18px;
+    .btn.primary {
+      background: linear-gradient(90deg, var(--red), var(--blue));
+      color: #060506;
+      border: none
+    }
+
+    .layout {
       display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 26px;
+      grid-template-columns: 1fr 340px;
+      gap: 22px;
+      margin-top: 22px;
       align-items: start
     }
 
-    .hero {
-      background: linear-gradient(180deg, rgba(59, 130, 246, 0.06), transparent);
-      padding: 26px;
-      border-radius: 14px;
+    .card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+      padding: 18px;
+      border-radius: var(--radius);
       border: 1px solid rgba(255, 255, 255, 0.03);
-      box-shadow: 0 12px 40px rgba(2, 6, 23, 0.6)
+      box-shadow: 0 6px 22px rgba(2, 6, 12, 0.45)
     }
 
-    .hero h2 {
+    .posts .post {
+      padding: 14px;
+      border-radius: 10px;
+      margin-bottom: 14px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), transparent)
+    }
+
+    .post h2 {
+      margin: 0 0 6px 0;
+      font-size: 1.05rem;
+      color: #fff
+    }
+
+    .post p {
       margin: 0;
-      font-size: 1.6rem
+      color: var(--muted);
+      line-height: 1.45
     }
 
-    .hero p {
-      margin: 8px 0 0;
-      color: var(--muted)
+    .meta {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 8px
     }
 
-    .controls {
+    .sidebar .search {
       display: flex;
       gap: 8px;
-      margin-top: 16px;
       align-items: center
-    }
-
-    .search {
-      display: flex;
-      gap: 8px;
-      width: 100%
     }
 
     input[type="search"] {
       flex: 1;
       padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      background: transparent;
-      color: inherit;
-      font-weight: 600
-    }
-
-    .btn {
-      border: 0;
-      padding: 9px 12px;
       border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
       background: transparent;
       color: var(--muted);
-      cursor: pointer;
-      font-weight: 700
+      font-size: 0.95rem;
     }
 
-    .tagbar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 14px
+    .small {
+      font-size: 0.88rem;
+      color: var(--muted)
     }
 
-    .tag {
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: var(--glass-2);
-      color: var(--muted);
-      font-weight: 700;
-      cursor: pointer;
-      border: 1px solid rgba(255, 255, 255, 0.02)
-    }
-
-    .tag.active {
-      background: linear-gradient(90deg, var(--red), var(--blue));
-      color: #07101a;
-      box-shadow: 0 8px 26px rgba(59, 130, 246, 0.10)
-    }
-
-    .posts {
-      display: grid;
-      gap: 16px;
-      margin-top: 18px
-    }
-
-    .card {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding: 16px;
-      border-radius: 12px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(0, 0, 0, 0.12));
-      border: 1px solid rgba(255, 255, 255, 0.03);
-      transition: transform .18s ease, box-shadow .18s ease
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 18px 48px rgba(2, 6, 23, 0.6)
-    }
-
-    .meta {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--muted);
-      font-size: 0.86rem
-    }
-
-    .title {
-      font-size: 1.12rem;
-      margin: 0;
-      color: #fff;
-      font-weight: 800
-    }
-
-    .excerpt {
-      color: var(--muted);
-      margin: 0;
-      font-size: 0.95rem
-    }
-
-    .badge {
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-weight: 800;
+    .chip {
       background: transparent;
       border: 1px solid rgba(255, 255, 255, 0.04);
       color: var(--muted);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 600;
       font-size: 0.85rem
     }
 
-    .read {
-      display: inline-block;
-      margin-top: 6px;
-      padding: 8px 12px;
-      border-radius: 10px;
-      background: linear-gradient(90deg, var(--blue), var(--red));
-      color: #081018;
-      font-weight: 800;
-      text-decoration: none
-    }
-
-    aside {
-      position: sticky;
-      top: 28px;
-      height: max-content
-    }
-
-    .aside-card {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
-      padding: 16px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.03)
-    }
-
-    .aside h4 {
-      margin: 0 0 8px
-    }
-
     footer {
-      max-width: var(--maxw);
-      margin: 40px auto 60px;
-      padding: 0 18px;
-      color: var(--muted);
+      margin-top: 28px;
       text-align: center;
-      font-size: 0.92rem
+      color: var(--muted);
+      font-size: 0.9rem
     }
 
-    /* small */
-    @media (max-width:980px) {
-      main {
-        grid-template-columns: 1fr;
-        gap: 18px
-      }
-
-      aside {
-        position: relative
-      }
-    }
-
-    @media (max-width:520px) {
-      .logo .mark {
-        width: 36px;
-        height: 36px
-      }
-
-      .hero h2 {
-        font-size: 1.25rem
-      }
-    }
-
-    /* utility highlights */
-    .hl {
+    .post .accent {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 8px;
+      margin-right: 8px;
+      font-weight: 700;
+      color: #060506;
       background: linear-gradient(90deg, var(--red), var(--blue));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      font-weight: 900
+    }
+
+    a:focus,
+    button:focus,
+    input:focus {
+      outline: 3px solid rgba(47, 176, 255, 0.14);
+      outline-offset: 3px
+    }
+
+    .post:hover {
+      transform: translateY(-4px);
+      transition: transform 220ms ease
+    }
+
+    @media (max-width:960px) {
+      .layout {
+        grid-template-columns: 1fr
+      }
+
+      .logo {
+        width: 52px;
+        height: 52px
+      }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="nav">
-      <div class="logo" role="img" aria-label="Offline Sync logo">
-        <div class="mark">OS</div>
-        <div class="brand">
-          <h1>OFFLINE SYCN BLOGSPOT</h1>
-          <p>Engineering · Linux · Space Tech · Policy</p>
+  <div class="container" role="document">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">OS</div>
+        <div>
+          <h1>ONLINE SYCN</h1>
+          <p class="tagline">Engineering · Linux · Space tech</p>
         </div>
       </div>
-      <nav>
-        <a class="navlink" href="#">Home</a>
-        <a class="navlink" href="#posts">Posts</a>
-        <a class="navlink" href="#about">About</a>
-        <a class="cta" href="#contact">Contact</a>
+
+      <nav aria-label="Primary">
+        <button class="btn" id="toggleTheme" title="Toggle theme (T)">Toggle theme</button>
+        <a class="btn" href="#posts">Posts</a>
+        <a class="btn primary" href="#about">About</a>
       </nav>
+    </header>
+
+    <div class="layout" id="site">
+      <main class="card posts" id="posts" tabindex="-1" aria-labelledby="latestHeading">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <h2 id="latestHeading" style="margin:0">Latest</h2>
+          <div class="small">Static · Fast · Minimal</div>
+        </div>
+
+        <!-- Edit or add posts below -->
+        <article class="post" data-title="First post: engineering notes" data-tags="engineering,linux">
+          <div style="display:flex;gap:10px;align-items:center;margin-bottom:8px">
+            <span class="accent">DEV</span>
+            <h2>First post: engineering notes</h2>
+          </div>
+          <p>Quick reference snippets for circuits and lab work, optimized for fast copy/paste.</p>
+          <div class="meta">2025-10-18 · tags: <span class="chip">engineering</span> <span class="chip">linux</span>
+          </div>
+        </article>
+
+        <article class="post" data-title="Why I use Linux" data-tags="linux,workflows">
+          <div style="display:flex;gap:10px;align-items:center;margin-bottom:8px">
+            <span class="accent">OS</span>
+            <h2>Why I use Linux</h2>
+          </div>
+          <p>Minimal distro picks, terminal toolkit, and reproducible dotfiles for student workflows.</p>
+          <div class="meta">2025-09-06 · tags: <span class="chip">linux</span> <span class="chip">workflows</span></div>
+        </article>
+
+        <article class="post" data-title="Space tech primer" data-tags="space,policy">
+          <div style="display:flex;gap:10px;align-items:center;margin-bottom:8px">
+            <span class="accent">SPACE</span>
+            <h2>Space tech primer</h2>
+          </div>
+          <p>Concise policy notes and essential reading to get started with small-sat basics.</p>
+          <div class="meta">2025-08-02 · tags: <span class="chip">space</span> <span class="chip">policy</span></div>
+        </article>
+
+      </main>
+
+      <aside class="sidebar">
+        <div class="card" style="margin-bottom:18px">
+          <h3 style="margin:0 0 8px 0">Search posts</h3>
+          <div class="search">
+            <input id="q" type="search" placeholder="Search titles or tags (press /)" aria-label="Search posts" />
+            <button class="btn" id="clear">Clear</button>
+          </div>
+          <div id="results" style="margin-top:12px;color:var(--muted)"></div>
+        </div>
+
+        <div class="card" id="about">
+          <h3 style="margin:0 0 8px 0">About</h3>
+          <p class="small">ONLINE SYCN is a compact site for short technical notes and practical how-tos.</p>
+          <div style="margin-top:10px">
+            <span class="chip">engineering</span>
+            <span class="chip">linux</span>
+            <span class="chip">space</span>
+            <span class="chip">notes</span>
+          </div>
+        </div>
+      </aside>
     </div>
-  </header>
 
-  <main>
-    <section class="hero" aria-labelledby="hero-title">
-      <h2 id="hero-title">Notes and short essays for makers and students</h2>
-      <p>Offline-first, single-file blog with zero API calls and instant client-side search. Strong red/blue/black
-        aesthetic.</p>
-
-      <div class="controls">
-        <div class="search" role="search">
-          <input id="q" type="search" placeholder="Search posts, tags or keywords..." aria-label="Search posts">
-          <button id="clear" class="btn" aria-label="Clear search">Clear</button>
-        </div>
-      </div>
-
-      <div class="tagbar" id="tagbar" aria-hidden="false"></div>
-
-      <div id="posts" class="posts" aria-live="polite"></div>
-    </section>
-
-    <aside>
-      <div class="aside-card">
-        <h4>About</h4>
-        <p style="color:var(--muted);margin:0 0 12px">A compact, privacy-first notebook for technical notes, tutorials
-          and opinions. All content lives inside this file.</p>
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <button class="badge" data-action="new">New</button>
-          <button class="badge" data-action="popular">Popular</button>
-          <button class="badge" data-action="tools">Tools</button>
-        </div>
-        <hr style="border:none;height:1px;background:rgba(255,255,255,0.03);margin:12px 0">
-        <h4 id="about">Quick tags</h4>
-        <div id="quicktags" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"></div>
-      </div>
-    </aside>
-  </main>
-
-  <footer>
-    &copy; <span id="year"></span> OFFLINE SYCN BLOGSPOT · Red · Blue · Black · No API
-  </footer>
+    <footer>
+      <div class="small">&copy; ONLINE SYCN 2025 · Crafted for clarity</div>
+    </footer>
+  </div>
 
   <script>
-    // Static post data (edit inline, no API)
-    const POSTS = [
-      { id: 1, title: "Offline-first web patterns", date: "2025-03-10", tags: ["web", "offline"], excerpt: "Design patterns to build reliable offline experiences with sync strategies.", slug: "#" },
-      { id: 2, title: "Linux tooling for engineering students", date: "2025-04-14", tags: ["linux", "tools"], excerpt: "Pick lightweight, reliable tools and optimize your workflow for labs and projects.", slug: "#" },
-      { id: 3, title: "Small-sat policy and standards 2025", date: "2025-06-02", tags: ["space", "policy"], excerpt: "What standards are emerging and what researchers need to prepare for.", slug: "#" },
-      { id: 4, title: "Fast client-side search without index", date: "2025-07-20", tags: ["web", "tutorial"], excerpt: "A minimal, fast search using token matching and lightweight scoring.", slug: "#" },
-      { id: 5, title: "Power management tips for laptops", date: "2025-08-18", tags: ["tools", "hardware"], excerpt: "Battery care, BIOS settings and practical tweaks for long sessions.", slug: "#" }
-    ];
+    (function () {
+      const q = document.getElementById('q');
+      const results = document.getElementById('results');
+      const posts = Array.from(document.querySelectorAll('.post')).map(node => ({
+        node,
+        title: (node.dataset.title || node.querySelector('h2').innerText).toLowerCase(),
+        tags: (node.dataset.tags || '').toLowerCase()
+      }));
 
-    // helpers
-    const el = id => document.getElementById(id);
-    const fmt = d => new Date(d).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+      function showMatches(list) {
+        if (!list.length) { results.textContent = 'No results'; return; }
+        results.innerHTML = list.map(p => `<div style="margin-bottom:8px"><strong style="color:#fff">${p.title}</strong><div class="small" style="color:var(--muted)">${p.tags || '—'}</div></div>`).join('');
+      }
 
-    // render posts
-    function renderPosts(q = '') {
-      const out = el('posts');
-      out.innerHTML = '';
-      const query = (q || '').trim().toLowerCase();
-      const filtered = POSTS.filter(p => {
-        if (!query) return true;
-        return (p.title + ' ' + p.excerpt + ' ' + p.tags.join(' ')).toLowerCase().includes(query);
+      q.addEventListener('input', () => {
+        const v = q.value.trim().toLowerCase();
+        if (!v) { results.textContent = ''; posts.forEach(p => p.node.style.display = ''); return; }
+        const matched = posts.filter(p => p.title.includes(v) || p.tags.includes(v));
+        posts.forEach(p => p.node.style.display = matched.includes(p) ? '' : 'none');
+        showMatches(matched);
       });
-      if (filtered.length === 0) {
-        out.innerHTML = `<div class="card"><p class="excerpt">No posts match your search.</p></div>`;
-        return;
-      }
-      for (const p of filtered) {
-        const a = document.createElement('article');
-        a.className = 'card';
-        a.innerHTML = `
-          <div class="meta"><time datetime="${p.date}">${fmt(p.date)}</time><div style="margin-left:auto;color:var(--muted);font-weight:700">${p.tags.map(t => `<span style="margin-left:8px">${t}</span>`).join('')}</div></div>
-          <h3 class="title">${p.title}</h3>
-          <p class="excerpt">${p.excerpt}</p>
-          <a class="read" href="${p.slug}" aria-label="Read ${p.title}">Read</a>
-        `;
-        out.appendChild(a);
-      }
-    }
 
-    // build tags
-    function buildTags() {
-      const all = Array.from(new Set(POSTS.flatMap(p => p.tags))).sort();
-      const bar = el('tagbar');
-      const quick = el('quicktags');
-      bar.innerHTML = ''; quick.innerHTML = '';
-      for (const t of all) {
-        const btn = document.createElement('button');
-        btn.className = 'tag';
-        btn.textContent = t;
-        btn.addEventListener('click', () => {
-          const active = btn.classList.toggle('active');
-          if (active) {
-            el('q').value = t; renderPosts(t);
-            for (const b of bar.querySelectorAll('.tag')) if (b !== btn) b.classList.remove('active');
-          } else {
-            el('q').value = ''; renderPosts('');
-          }
-        });
-        bar.appendChild(btn);
-        const qt = btn.cloneNode(true);
-        qt.addEventListener('click', () => { btn.click(); });
-        quick.appendChild(qt);
-      }
-    }
+      document.getElementById('clear').addEventListener('click', () => { q.value = ''; q.dispatchEvent(new Event('input')); q.focus(); });
 
-    // interactions
-    el('q').addEventListener('input', e => {
-      renderPosts(e.target.value);
-      document.querySelectorAll('.tag.active').forEach(t => t.classList.remove('active'));
-    });
-    el('clear').addEventListener('click', () => { el('q').value = ''; renderPosts(''); document.querySelectorAll('.tag.active').forEach(t => t.classList.remove('active')); });
-
-    // aside badges quick filters
-    document.querySelectorAll('[data-action]').forEach(b => {
-      b.addEventListener('click', () => {
-        const a = b.getAttribute('data-action');
-        if (a === 'new') {
-          renderPosts('2025'); // simple heuristic
-        } else if (a === 'popular') {
-          renderPosts(''); // fallback to all
-        } else {
-          renderPosts(a);
-          el('q').value = a;
-        }
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Keyboard shortcuts: '/' focuses search, 'Escape' clears
+      window.addEventListener('keydown', (e) => {
+        if (e.key === '/' && document.activeElement !== q) { e.preventDefault(); q.focus(); }
+        if (e.key === 'Escape') { q.value = ''; q.dispatchEvent(new Event('input')); }
       });
-    });
 
-    // init
-    document.getElementById('year').textContent = new Date().getFullYear();
-    buildTags();
-    renderPosts();
-
-    // accessibility: allow Enter on tags (keyboard)
-    document.addEventListener('keydown', e => {
-      if (e.key === 'k' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); el('q').focus(); }
-    });
+      // Theme toggle (simple color inversion for readability)
+      const tBtn = document.getElementById('toggleTheme');
+      const root = document.documentElement;
+      const applyLight = () => {
+        root.style.setProperty('--bg', '#faf9fa');
+        root.style.setProperty('--panel', '#ffffff');
+        root.style.setProperty('--muted', '#334155');
+        root.style.setProperty('--red', '#ff375f');
+        root.style.setProperty('--blue', '#2fb0ff');
+        root.style.setProperty('--text', '#071023');
+        localStorage.setItem('os-theme', 'light');
+      };
+      const applyDark = () => { root.style.removeProperty('--bg'); root.style.removeProperty('--panel'); root.style.removeProperty('--muted'); root.style.removeProperty('--text'); localStorage.setItem('os-theme', 'dark'); };
+      tBtn.addEventListener('click', () => { if (localStorage.getItem('os-theme') === 'light') applyDark(); else applyLight(); });
+      if (localStorage.getItem('os-theme') === 'light') applyLight();
+    })();
   </script>
 </body>
 
