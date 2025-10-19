@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Posts — ONLINE SYCN</title>
+  <meta name="description" content="Notes for makers and students: engineering · Linux · space tech" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Mono&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #060506;
+      --panel: #0b0b10;
+      --muted: #b7c0c9;
+      --red: #ff375f;
+      --blue: #2fb0ff;
+      --glass: rgba(255, 255, 255, 0.03);
+      --radius: 12px;
+      --maxw: 1100px;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      background:
+        radial-gradient(800px 300px at 85% 10%, rgba(47, 176, 255, 0.06), transparent 8%),
+        linear-gradient(180deg, var(--bg) 0%, #030204 60%);
+      color: var(--muted);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial
+    }
+
+    .container {
+      max-width: var(--maxw);
+      margin: 36px auto;
+      padding: 22px
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      justify-content: space-between
+    }
+
+    .brand {
+      display: flex;
+      gap: 14px;
+      align-items: center
+    }
+
+    .logo {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--red), var(--blue));
+      display: grid;
+      place-items: center;
+      font-family: Fira Mono, monospace;
+      color: #060506;
+      font-weight: 900;
+      box-shadow: 0 10px 30px rgba(3, 3, 8, 0.7)
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: #fff
+    }
+
+    .tagline {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem
+    }
+
+    nav {
+      display: flex;
+      gap: 10px;
+      align-items: center
+    }
+
+    .btn {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: var(--muted);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none
+    }
+
+    .btn.primary {
+      background: linear-gradient(90deg, var(--red), var(--blue));
+      color: #060506;
+      border: none
+    }
+
+    main {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 22px
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+      padding: 20px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      box-shadow: 0 8px 26px rgba(2, 6, 12, 0.45)
+    }
+
+    /* search + posts */
+    .search {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background: var(--glass);
+      padding: 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.03)
+    }
+
+    .search input {
+      background: transparent;
+      border: 0;
+      color: var(--muted);
+      outline: none;
+      width: 100%;
+      font-size: 14px;
+      padding: 6px
+    }
+
+    .posts {
+      display: flex;
+      flex-direction: column;
+      gap: 14px
+    }
+
+    .post-card {
+      padding: 14px;
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), transparent);
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s
+    }
+
+    .post-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(2, 6, 20, 0.6)
+    }
+
+    .post-title {
+      font-weight: 600;
+      color: #fff;
+      margin: 0 0 6px
+    }
+
+    .post-meta {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0
+    }
+
+    .post-excerpt {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px
+    }
+
+    /* reader */
+    #reader {
+      display: none
+    }
+
+    .post-hero {
+      padding: 24px;
+      border-radius: 12px;
+      margin-bottom: 14px;
+      background: linear-gradient(180deg, rgba(47, 176, 255, 0.03), rgba(255, 55, 95, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.03)
+    }
+
+    .post-hero h2 {
+      margin: 0;
+      color: #fff;
+      font-size: 22px
+    }
+
+    .post-body {
+      padding: 18px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), transparent);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      color: var(--muted);
+      line-height: 1.7
+    }
+
+    pre {
+      background: #071220;
+      padding: 12px;
+      border-radius: 8px;
+      overflow: auto;
+      color: #bfe9ff
+    }
+
+    aside .chip {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--muted);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-block;
+      margin: 6px 6px 0 0
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 0.9rem
+    }
+
+    .accent-line {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--blue), transparent);
+      margin: 12px 0;
+      border-radius: 2px;
+      opacity: 0.8;
+      animation: slide 3.5s linear infinite;
+      background-size: 200% 100%
+    }
+
+    @keyframes slide {
+      0% {
+        background-position: 0 0
+      }
+
+      50% {
+        background-position: 100% 0
+      }
+
+      100% {
+        background-position: 0 0
+      }
+    }
+
+    @media (max-width:960px) {
+      main {
+        grid-template-columns: 1fr
+      }
+
+      .logo {
+        width: 48px;
+        height: 48px
+      }
+    }
+
+    @media (max-width:560px) {
+      .container {
+        padding: 16px
+      }
+
+      .post-hero h2 {
+        font-size: 18px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" role="document">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">OS</div>
+        <div>
+          <h1>ONLINE SYCN</h1>
+          <p class="tagline">Engineering · Linux · Space tech</p>
+        </div>
+      </div>
+
+      <nav aria-label="Primary">
+        <a class="btn" href="index.html">Home</a>
+        <a class="btn primary" href="about.html">About</a>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <div class="card" style="margin-bottom:14px">
+          <div class="search" role="search" aria-label="Search posts">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="opacity:0.9;margin-left:6px">
+              <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            <input id="search" placeholder="Search titles, excerpts, tags (press /)" aria-label="Search posts" />
+            <button id="clear" class="btn" style="padding:6px 10px">Clear</button>
+          </div>
+        </div>
+
+        <div class="posts card" id="postsList" aria-live="polite">
+          <!-- post cards injected by JS -->
+        </div>
+
+        <!-- reader -->
+        <div id="reader" class="card" aria-hidden="true" style="margin-top:14px">
+          <div class="post-hero">
+            <h2 id="r-title">Post Title</h2>
+            <div id="r-meta" class="post-meta"></div>
+          </div>
+          <article id="r-body" class="post-body"></article>
+          <div style="margin-top:12px">
+            <a href="#" id="back" class="btn">← Back to posts</a>
+          </div>
+        </div>
+      </section>
+
+      <aside>
+        <div class="card">
+          <h3 style="margin-top:0;color:#fff">Latest</h3>
+          <div id="latest"></div>
+          <div class="accent-line" aria-hidden="true"></div>
+          <h4 style="margin:10px 0 6px;color:#fff">About</h4>
+          <p style="margin:0">Compact notes and practical how-tos. Crafted for clarity.</p>
+          <div style="margin-top:12px">
+            <a class="chip" href="about.html">About me</a>
+            <a class="chip" href="index.html">Back to home</a>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <div>&copy; ONLINE SYCN 2025 · Crafted for clarity</div>
+    </footer>
+  </div>
+
+  <script>
+    // posts data (edit or load from JSON)
+    const POSTS = [
+      { id: 'uart-debug', title: 'How I debug embedded UART', date: '2025-10-19', tags: ['electronics'], excerpt: 'Short notes on wiring, baud, and tools for UART debugging.', body: `<h3>Introduction</h3><p>Quick notes on wiring, baud, and tools I use when UART misbehaves.</p><h3>Checklist</h3><ol><li>Check common ground</li><li>Confirm TX/RX wiring</li><li>Match baud/parity</li></ol><pre><code>// pseudocode\nuart.init(115200);\nuart.write("hello\\n");\n</code></pre>` },
+      { id: 'static-offline', title: 'Static site offline first', date: '2025-09-10', tags: ['web'], excerpt: 'Design a tiny static blog for note-taking and local-first usage.', body: `<h3>Principles</h3><ul><li>Keep files small</li><li>Prefer relative links</li></ul>` },
+      { id: 'linux', title: 'Why I use Linux', date: '2025-09-06', tags: ['linux', 'workflows'], excerpt: 'Minimal distro picks, terminal toolkit, and reproducible dotfiles.', body: `<p>Choose a minimal base and add what you need.</p>` }
+    ];
+
+    const postsList = document.getElementById('postsList');
+    const latestEl = document.getElementById('latest');
+    const reader = document.getElementById('reader');
+    const rTitle = document.getElementById('r-title');
+    const rMeta = document.getElementById('r-meta');
+    const rBody = document.getElementById('r-body');
+    const search = document.getElementById('search');
+    const clear = document.getElementById('clear');
+    const back = document.getElementById('back');
+
+    // render helpers
+    function renderCard(p) {
+      return `
+        <div class="post-card" data-id="${p.id}" tabindex="0" role="link" aria-label="${p.title}">
+          <div class="post-title">${escape(p.title)}</div>
+          <div class="post-meta">${escape(p.date)} · ${escape(p.tags.join(', '))}</div>
+          <div class="post-excerpt">${escape(p.excerpt)}</div>
+        </div>
+      `;
+    }
+    function escape(s) { return String(s).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;'); }
+
+    function renderList(list) {
+      postsList.innerHTML = list.map(renderCard).join('');
+      // attach handlers
+      postsList.querySelectorAll('.post-card').forEach(el => {
+        el.addEventListener('click', () => openReader(el.getAttribute('data-id')));
+        el.addEventListener('keydown', (e) => { if (e.key === 'Enter') openReader(el.getAttribute('data-id')); });
+      });
+      latestEl.innerHTML = list.slice(0, 3).map(p => `<div style="margin-bottom:10px"><a href="#" data-id="${p.id}" class="chip">${escape(p.title)}</a><div style="color:var(--muted);font-size:12px">${escape(p.date)}</div></div>`).join('');
+      latestEl.querySelectorAll('[data-id]').forEach(a => {
+        a.addEventListener('click', e => { e.preventDefault(); openReader(a.getAttribute('data-id')); });
+      });
+    }
+
+    function openReader(id) {
+      const p = POSTS.find(x => x.id === id);
+      if (!p) return;
+      rTitle.textContent = p.title;
+      rMeta.textContent = `${p.date} · ${p.tags.join(', ')}`;
+      rBody.innerHTML = p.body;
+      reader.style.display = 'block';
+      reader.setAttribute('aria-hidden', 'false');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      history.pushState({ post: id }, '', `#${id}`);
+    }
+
+    function closeReader() {
+      reader.style.display = 'none';
+      reader.setAttribute('aria-hidden', 'true');
+      history.pushState({}, '', '#');
+    }
+
+    // search: title, excerpt, tags
+    function doSearch(q) {
+      const v = (q || '').trim().toLowerCase();
+      if (!v) return renderList(POSTS);
+      const filtered = POSTS.filter(p => {
+        return (p.title + ' ' + p.excerpt + ' ' + p.tags.join(' ')).toLowerCase().includes(v);
+      });
+      renderList(filtered);
+    }
+
+    // keyboard shortcuts: / to focus search, Esc to clear/close reader
+    window.addEventListener('keydown', e => {
+      if (e.key === '/' && document.activeElement !== search) { e.preventDefault(); search.focus(); }
+      if (e.key === 'Escape') { if (reader.style.display === 'block') closeReader(); else { search.value = ''; doSearch(''); } }
+    });
+
+    search.addEventListener('input', () => doSearch(search.value));
+    clear.addEventListener('click', () => { search.value = ''; search.focus(); doSearch(''); });
+
+    back.addEventListener('click', e => { e.preventDefault(); closeReader(); });
+
+    // deep-link handling
+    window.addEventListener('popstate', () => {
+      const id = location.hash.replace('#', '');
+      if (!id) closeReader();
+      else openReader(id);
+    });
+
+    // init
+    renderList(POSTS);
+    const initial = location.hash.replace('#', '');
+    if (initial) setTimeout(() => openReader(initial), 120);
+  </script>
+</body>
+
+</html>
